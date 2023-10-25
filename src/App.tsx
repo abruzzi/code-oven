@@ -1,19 +1,24 @@
-import React from 'react';
-import './App.css';
-
-import pizzas from './pizzas.json';
+import React, { useState } from "react";
+import "./App.css";
+import { MenuList } from "./MenuList";
+import { ShoppingCart } from "./ShoppingCart";
+import { IMenuItem } from "./models/IMenuItem";
 
 function App() {
+  const [cartItems, setCartItems] = useState<IMenuItem[]>([]);
+
+  const addItem = (item: IMenuItem) => {
+    setCartItems([...cartItems, item]);
+  };
+
   return (
-    <div className="app">
+    <>
       <h1>The Code Oven</h1>
-      <div role="list">
-        {pizzas.map(({id, name, price}) => <div key={id} role="listitem">
-          <h3>{name}</h3>
-          <p>{price}</p>
-        </div>)}
+      <div className="main">
+        <MenuList onAddMenuItem={addItem} />
+        <ShoppingCart cartItems={cartItems} />
       </div>
-    </div>
+    </>
   );
 }
 
