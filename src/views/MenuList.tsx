@@ -1,10 +1,7 @@
-import { useMenuItems } from "./useMenuItems";
-import React, { useState } from "react";
-import { IMenuItem } from "./models/IMenuItem";
-import { PizzaMenuItem } from "./models/PizzaMenuItem";
-import { PastaItem } from "./models/PastaItem";
-import { AbstractMenuItem } from "./models/AbstractMenuItem";
-import { SpecialDiscountStrategy } from "./models/strategy/SpecialDiscountStrategy";
+import { useMenuItems } from "../hooks/useMenuItems";
+import React from "react";
+import { IMenuItem } from "../models/IMenuItem";
+import { SpecialDiscountStrategy } from "../models/strategy/SpecialDiscountStrategy";
 
 function isTodayFriday(): boolean {
   const today = new Date();
@@ -22,6 +19,7 @@ export const MenuList = ({
     if (isTodayFriday()) {
       item.discountStrategy = new SpecialDiscountStrategy();
     }
+
     onAddMenuItem(item);
   };
 

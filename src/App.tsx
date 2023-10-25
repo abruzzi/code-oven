@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import { MenuList } from "./MenuList";
-import { ShoppingCart } from "./ShoppingCart";
+import { MenuList } from "./views/MenuList";
+import { ShoppingCart } from "./views/ShoppingCart";
 import { IMenuItem } from "./models/IMenuItem";
 
 function App() {

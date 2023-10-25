@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { RemoteMenuItem } from "./models/RemoteMenuItem";
-import { IMenuItem } from "./models/IMenuItem";
-import { DefaultMenuItem } from "./models/DefaultMenuItem";
+import { RemoteMenuItem } from "../models/RemoteMenuItem";
+import { IMenuItem } from "../models/IMenuItem";
+import { BaseMenuItem } from "../models/BaseMenuItem";
 
 export const useMenuItems = () => {
   const [menuItems, setMenuItems] = useState<IMenuItem[]>([]);
@@ -15,7 +15,7 @@ export const useMenuItems = () => {
 
       setMenuItems(
         menuItems.map((item: RemoteMenuItem) => {
-          return new DefaultMenuItem(item);
+          return new BaseMenuItem(item);
         })
       );
     };

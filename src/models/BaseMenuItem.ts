@@ -3,7 +3,7 @@ import { RemoteMenuItem } from "./RemoteMenuItem";
 import { NoDiscountStrategy } from "./strategy/NoDiscountStrategy";
 import { IDiscountStrategy } from "./strategy/IDiscountStrategy";
 
-export class AbstractMenuItem implements IMenuItem {
+export class BaseMenuItem implements IMenuItem {
   private readonly _id: string;
   private readonly _name: string;
   private readonly _type: string;
@@ -18,16 +18,6 @@ export class AbstractMenuItem implements IMenuItem {
     this._type = item.category;
     this._ingredients = item.ingredients;
     this._discountStrategy = new NoDiscountStrategy();
-  }
-
-  static from(item: IMenuItem): RemoteMenuItem {
-    return {
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      category: item.type,
-      ingredients: item.ingredients,
-    };
   }
 
   get id() {
@@ -47,7 +37,7 @@ export class AbstractMenuItem implements IMenuItem {
   }
 
   get ingredients() {
-    return this._ingredients.slice(0, 3);
+    return this._ingredients.slice(0, 2);
   }
 
   set discountStrategy(strategy: IDiscountStrategy) {

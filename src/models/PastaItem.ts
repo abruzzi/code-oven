@@ -1,7 +1,7 @@
-import { AbstractMenuItem } from "./AbstractMenuItem";
+import { BaseMenuItem } from "./BaseMenuItem";
 import { RemoteMenuItem } from "./RemoteMenuItem";
 
-export class PastaItem extends AbstractMenuItem {
+export class PastaItem extends BaseMenuItem {
   private readonly servingSize: string;
 
   constructor(item: RemoteMenuItem, servingSize: string) {
