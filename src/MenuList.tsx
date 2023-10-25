@@ -4,6 +4,12 @@ import { IMenuItem } from "./models/IMenuItem";
 import { PizzaMenuItem } from "./models/PizzaMenuItem";
 import { PastaItem } from "./models/PastaItem";
 import { AbstractMenuItem } from "./models/AbstractMenuItem";
+import { SpecialDiscountStrategy } from "./models/strategy/SpecialDiscountStrategy";
+
+function isTodayFriday(): boolean {
+  const today = new Date();
+  return today.getDay() === 3;
+}
 
 export const MenuList = ({
   onAddMenuItem,
@@ -11,23 +17,16 @@ export const MenuList = ({
   onAddMenuItem: (item: IMenuItem) => void;
 }) => {
   const { menuItems } = useMenuItems();
-  const [toppings, setToppings] = useState([]);
-  const [size, setSize] = useState<string>("small");
 
   const handleAddMenuItem = (item: IMenuItem) => {
-    console.log(item);
-    const remoteItem = AbstractMenuItem.from(item);
-    if (item.type === "pizza") {
-      onAddMenuItem(new PizzaMenuItem(remoteItem, 3));
-    } else if (item.type === "pasta") {
-      onAddMenuItem(new PastaItem(remoteItem, "large"));
-    } else {
-      onAddMenuItem(item);
+    if (isTodayFriday()) {
+      item.discountStrategy = new SpecialDiscountStrategy();
     }
+    onAddMenuItem(item);
   };
 
   return (
-    <div data-testid="menu-list" className="menu-list">
+    <div data-testid="menu-list" className="menu-list ">
       <ol>
         {menuItems.map((item) => (
           <li key={item.id}>

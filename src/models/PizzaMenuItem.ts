@@ -8,8 +8,4 @@ export class PizzaMenuItem extends AbstractMenuItem {
     super(item);
     this.toppings = toppings;
   }
-
-  calculateDiscount(): number {
-    return this.toppings >= 3 ? this.price * 0.1 : 0;
-  }
 }

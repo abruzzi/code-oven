@@ -10,6 +10,7 @@ export const ShoppingCart = ({ cartItems }: { cartItems: IMenuItem[] }) => {
 
   return (
     <div data-testid="shopping-cart" className="shopping-cart">
+      <h2>Shopping Cart</h2>
       <ol>
         {cartItems.map((item) => (
           <li key={item.id}>
@@ -18,8 +19,8 @@ export const ShoppingCart = ({ cartItems }: { cartItems: IMenuItem[] }) => {
           </li>
         ))}
       </ol>
-      <div>Total Discount: ${totalDiscount}</div>
-      <div>Total: ${totalPrice - totalDiscount}</div>
+      <div className="number">Total Discount: ${totalDiscount}</div>
+      <div className="number">Total: ${totalPrice - totalDiscount}</div>
       <button disabled={cartItems.length === 0}>Place My Order</button>
     </div>
   );

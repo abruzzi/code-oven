@@ -8,8 +8,4 @@ export class PastaItem extends AbstractMenuItem {
     super(item);
     this.servingSize = servingSize;
   }
-
-  calculateDiscount(): number {
-    return this.servingSize === "large" ? this.price * 0.15 : 0;
-  }
 }
